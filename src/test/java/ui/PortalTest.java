@@ -3,8 +3,11 @@ package ui;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.log4testng.Logger;
 
 public class PortalTest {
+
+    Logger logger = Logger.getLogger(PortalTest.class);
 
     @BeforeClass
     public void setUp() {
@@ -13,12 +16,12 @@ public class PortalTest {
 
     @Test(groups = { "configure" })
     public void test1() {
-        System.out.println("This is ui test1");
+        logger.debug("This is ui test1");
     }
 
     @Test(groups = { "configure" })
     public void test2() {
-        System.out.println("This is ui test2");
+        logger.info("This is ui test2");
     }
 
     @AfterClass

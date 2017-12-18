@@ -7,21 +7,23 @@ import org.testng.log4testng.Logger;
 
 public class BaseTest {
 
-    Logger logger = Logger.getLogger(BaseTest.class);
+    private static Logger LOGGER = Logger.getLogger(BaseTest.class);
 
-    @BeforeClass
+    @BeforeClass(groups = { "configure" })
     public void setUp() {
         // code that will be invoked when this test is instantiated
+//        WebBrowser browser = ;
+//        browser.loadTopLevelPage(BizibozPortal.class);
     }
 
     @Test(groups = { "configure" })
     public void test1() {
-        logger.info("This is test1");
+        LOGGER.info("This is test1");
     }
 
     @Test(groups = { "configure" })
     public void test2() {
-        logger.warn("This is test2");
+        LOGGER.warn("This is test2");
     }
 
     @AfterClass

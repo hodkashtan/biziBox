@@ -12,6 +12,13 @@
         <java.version>1.8</java.version>
         <selenium.version>3.8.1</selenium.version>
         <testng.version>6.13.1</testng.version>
+        <ui.tests.testng.file>ui-testng.xml</ui.tests.testng.file>
+        <testng.tests.testnames>configure</testng.tests.testnames>
+        <webdriver.chrome.driver>${project.basedir}/etc/drivers/chrome/mac64/chromedriver</webdriver.chrome.driver>
+        <!--<webdriver.firefox.driver></webdriver.firefox.driver>-->
+        <!--<webdriver.ie.driver></webdriver.ie.driver>-->
+        <!--<webdriver.edge.driver></webdriver.edge.driver>-->
+        <!--<webdriver.safari.driver></webdriver.safari.driver>-->
     </properties>
 
 
@@ -22,7 +29,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-            <scope>test</scope>
+            <!-- scope>test</scope -->
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -30,6 +37,69 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-api -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-api</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-chrome-driver</artifactId>-->
+            <!--<version>${selenium.version}</version>-->
+        <!--</dependency>-->
+
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-firefox-driver</artifactId>-->
+            <!--<version>${selenium.version}</version>-->
+        <!--</dependency>-->
+
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-ie-driver &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-ie-driver</artifactId>-->
+            <!--<version>${selenium.version}</version>-->
+        <!--</dependency>-->
+
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-safari-driver &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.seleniumhq.selenium</groupId>-->
+            <!--<artifactId>selenium-safari-driver</artifactId>-->
+            <!--<version>${selenium.version}</version>-->
+        <!--</dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>5.0.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-leg-rc -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-leg-rc</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.13</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.13</version>
         </dependency>
 
     </dependencies>
@@ -46,13 +116,33 @@
             </plugin>
 
             <plugin>
+                <!--surefire:test runs the unit tests of an application-->
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.20.1</version>
                 <configuration>
+                    <skip>false</skip>
+                    <properties>
+                        <property>
+                            <name>testnames</name>
+                            <value>${testng.tests.testnames}</value>
+                        </property>
+                        <!--<property>-->
+                            <!--<name>listener</name>-->
+                            <!--<value></value>-->
+                        <!--</property>-->
+                        <workingDirectory>target/</workingDirectory>
+                    </properties>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>${project.basedir}/etc/testng/${ui.tests.testng.file}</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                        <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+                        <!--<webdriver.ie.driver>${webdriver.ie.driver}</webdriver.ie.driver>-->
+                        <!--<webdriver.firefox.driver>${webdriver.firefox.driver}</webdriver.firefox.driver>-->
+                        <!--<webdriver.edge.driver>${webdriver.edge.driver}</webdriver.edge.driver>-->
+                        <!--<webdriver.safari.driver>${webdriver.safari.driver}</webdriver.safari.driver>-->
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
         </plugins>

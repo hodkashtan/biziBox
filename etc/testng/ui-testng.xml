@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="UI Suite" verbose="1" >
+    <test name="ui-tests">
+        <groups>
+            <run>
+                <include name="configure"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="ui.BaseTest"/>
+            <class name="ui.PortalTest"/>
+        </classes>
+    </test>
+</suite>

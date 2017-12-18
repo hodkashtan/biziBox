@@ -7,7 +7,7 @@ import org.testng.log4testng.Logger;
 
 public class PortalTest {
 
-    Logger logger = Logger.getLogger(PortalTest.class);
+    private static Logger LOGGER = Logger.getLogger(PortalTest.class);
 
     @BeforeClass
     public void setUp() {
@@ -16,12 +16,12 @@ public class PortalTest {
 
     @Test(groups = { "configure" })
     public void test1() {
-        logger.debug("This is ui test1");
+        LOGGER.debug("This is ui test1");
     }
 
     @Test(groups = { "configure" })
     public void test2() {
-        logger.info("This is ui test2");
+        LOGGER.info("This is ui test2");
     }
 
     @AfterClass

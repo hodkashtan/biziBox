@@ -1,12 +1,18 @@
 # User-specific stuff:
-.idea/**/workspace.xml
-.idea/**/tasks.xml
-.idea/dictionaries
-.idea/misc.xml
-.idea/modules.xml
-.idea/workspace.xml
+#.idea/**/workspace.xml
+#.idea/**/tasks.xml
+#.idea/dictionaries
+#.idea/libraries
+#.idea/inspectionProfiles/
+#.idea/*.xml
+
+.idea/*
+!.idea/runConfigurations/
 .DS_Store
 
 target
 *.iml
+
+
+
 

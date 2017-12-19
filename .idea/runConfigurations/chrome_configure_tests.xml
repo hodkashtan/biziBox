@@ -10,7 +10,7 @@
     <option name="METHOD_NAME" value="" />
     <option name="GROUP_NAME" value="configure" />
     <option name="TEST_OBJECT" value="GROUP" />
-    <option name="VM_PARAMETERS" value="-ea -Dtestng.selenium.browser=chrome" />
+    <option name="VM_PARAMETERS" value="-ea -Dtests.bizibox.server=&quot;https://bizibox.biz&quot; -Dtestng.selenium.browser=chrome" />
     <option name="PARAMETERS" value="" />
     <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
     <option name="OUTPUT_DIRECTORY" value="" />

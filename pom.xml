@@ -14,8 +14,9 @@
         <testng.version>6.13.1</testng.version>
         <ui.tests.testng.file>ui-testng.xml</ui.tests.testng.file>
         <testng.tests.testnames>configure</testng.tests.testnames>
+        <tests.bizibox.server>https://bizibox.biz/</tests.bizibox.server>
         <webdriver.chrome.driver>${project.basedir}/etc/drivers/chrome/mac64/chromedriver</webdriver.chrome.driver>
-        <!--<webdriver.firefox.driver></webdriver.firefox.driver>-->
+        <webdriver.gecko.driver>${project.basedir}/etc/drivers/firefox/mac64/geckodriver</webdriver.gecko.driver>
         <!--<webdriver.ie.driver></webdriver.ie.driver>-->
         <!--<webdriver.edge.driver></webdriver.edge.driver>-->
         <!--<webdriver.safari.driver></webdriver.safari.driver>-->
@@ -86,6 +87,20 @@
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-leg-rc</artifactId>
             <version>${selenium.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.8</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.4</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->

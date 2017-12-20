@@ -1,15 +1,15 @@
 package selenium.pagefactory.framework.browser.web;
 
+import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.logging.LoggingPreferences;
 import selenium.pagefactory.framework.actions.InternetExplorerActions;
 import selenium.pagefactory.framework.config.TimeoutsConfig;
-import selenium.pagefactory.framework.exception.BiziboxWebDriverException;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerDriverLogLevel;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -38,27 +38,31 @@ public class InternetExplorerBrowser extends WebBrowser {
     }
 
     @Override
-    public DesiredCapabilities getDesiredCapabilities() {
-        DesiredCapabilities desiredCapabilities = DesiredCapabilities.internetExplorer();
+    public InternetExplorerOptions getDesiredCapabilities() {
+        InternetExplorerOptions capabilities = new InternetExplorerOptions();
 
-        setCommonWebBrowserCapabilities(desiredCapabilities);
+        setCommonWebBrowserCapabilities(capabilities);
 
-        desiredCapabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
-        desiredCapabilities.setCapability(InternetExplorerDriver.NATIVE_EVENTS, false);
-        desiredCapabilities.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
-        desiredCapabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
-        desiredCapabilities.setCapability(InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING, true);
+        capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
+        capabilities.setCapability(InternetExplorerDriver.NATIVE_EVENTS, false);
+        capabilities.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
+        capabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
+        capabilities.setCapability(InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING, true);
 
 
         Level logLevel = getLogLevel();
-        desiredCapabilities.setCapability(InternetExplorerDriver.LOG_LEVEL, convertJavaLogLevelToIeLogLevel(logLevel.toString()));
+        capabilities.setCapability(InternetExplorerDriver.LOG_LEVEL, convertJavaLogLevelToIeLogLevel(logLevel.toString()));
 
         Optional<String> browserLogFile = getBrowserLogFile();
         if (browserLogFile.isPresent() && !browserLogFile.get().isEmpty()) {
-            desiredCapabilities.setCapability(InternetExplorerDriver.LOG_FILE, browserLogFile.get());
+            capabilities.setCapability(InternetExplorerDriver.LOG_FILE, browserLogFile.get());
         }
 
-        return desiredCapabilities;
+        // Set logging preferences.
+        LoggingPreferences loggingPreferences = getLoggingPreferences();
+        capabilities.setCapability(CapabilityType.LOGGING_PREFS, loggingPreferences);
+
+        return capabilities;
     }
 
     private static String convertJavaLogLevelToIeLogLevel(String javaLogLevel) {
@@ -93,9 +97,8 @@ public class InternetExplorerBrowser extends WebBrowser {
         return new InternetExplorerActions(this);
     }
 
-    //TODO: Check different constructor (not deprecated)
     @Override
-    protected WebDriver createWebDriver() throws BiziboxWebDriverException {
+    protected WebDriver createWebDriver() {
         return new InternetExplorerDriver(getDesiredCapabilities());
     }
 

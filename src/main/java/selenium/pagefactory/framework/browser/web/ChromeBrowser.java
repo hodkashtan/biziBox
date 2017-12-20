@@ -10,7 +10,6 @@ import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.actions.ChromeSeleniumActions;
 import selenium.pagefactory.framework.config.TimeoutsConfig;
@@ -66,41 +65,42 @@ public class ChromeBrowser extends WebBrowser {
     }
 
     @Override
-    public DesiredCapabilities getDesiredCapabilities() {
-        DesiredCapabilities desiredCapabilities = DesiredCapabilities.chrome();
+    public ChromeOptions getDesiredCapabilities() {
+        ChromeOptions capabilities = new ChromeOptions();
+        setCommonWebBrowserCapabilities(capabilities);
 
-        setCommonWebBrowserCapabilities(desiredCapabilities);
-
-        desiredCapabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
+        capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
 
         // If the locale option is present and is not empty, then set this option in Chromedriver
         Optional<String> browserLocale = getBrowserLocale();
         if (browserLocale.isPresent() && !browserLocale.get().isEmpty()) {
             Map<String, String> chromePrefs = Maps.newHashMap();
             chromePrefs.put("intl.accept_languages", browserLocale.get());
-            desiredCapabilities.setCapability("chrome.prefs", chromePrefs);
+            capabilities.setCapability("chrome.prefs", chromePrefs);
         }
 
         // If the browser binary path is present and not empty, then set this as the Chrome Binary file
         Optional<String> browserBinaryPath = getBrowserBinaryPath();
         if (browserBinaryPath.isPresent() && !browserBinaryPath.get().isEmpty()) {
-            desiredCapabilities.setCapability("chrome.binary", browserBinaryPath.get());
+            capabilities.setCapability("chrome.binary", browserBinaryPath.get());
         }
-
-        // ChromeOptions
-        ChromeOptions chromeOptions = new ChromeOptions();
 
         // This tells Chromedriver we're running tests.
         // This eliminates the banner with the message "You are using an unsupported command-line flag --ignore-certificate-errors"
-        if(options.isPresent()) {
+        if (options.isPresent()) {
             if (!options.get().contains("test-type")) {
                 options.get().add("test-type");
             }
 
-            chromeOptions.addArguments(options.get());
-            desiredCapabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+            capabilities.addArguments(options.get());
+            capabilities.setCapability(ChromeOptions.CAPABILITY, capabilities);
         }
-        return desiredCapabilities;
+
+        // Set logging preferences.
+        LoggingPreferences loggingPreferences = getLoggingPreferences();
+        capabilities.setCapability(CapabilityType.LOGGING_PREFS, loggingPreferences);
+
+        return capabilities;
     }
 
     @Override

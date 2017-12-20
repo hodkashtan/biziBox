@@ -3,14 +3,12 @@ package selenium.pagefactory.framework.browser.web;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.actions.SafariSeleniumActions;
 import selenium.pagefactory.framework.config.TimeoutsConfig;
-import selenium.pagefactory.framework.exception.BiziboxWebDriverException;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
@@ -57,15 +55,14 @@ public class SafariBrowser extends WebBrowser {
     }
 
     @Override
-    public DesiredCapabilities getDesiredCapabilities() {
-        DesiredCapabilities desiredCapabilities = DesiredCapabilities.safari();
+    public SafariOptions getDesiredCapabilities() {
+        SafariOptions capabilities = new SafariOptions();
 
-        setCommonWebBrowserCapabilities(desiredCapabilities);
+        setCommonWebBrowserCapabilities(capabilities);
 
-        desiredCapabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
+        capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
 
-        SafariOptions safariOptions = new SafariOptions();
-        safariOptions.setUseCleanSession(true);
+        capabilities.useCleanSession(true);
 
         // Selenium seems to be broken if we specify SafariOptions for a RemoteWebDriver.
         // java.lang.ClassCastException: org.json.JSONObject cannot be cast to java.lang.String
@@ -73,7 +70,7 @@ public class SafariBrowser extends WebBrowser {
 
         // desiredCapabilities.setCapability(SafariOptions.CAPABILITY, safariOptions);
 
-        return desiredCapabilities;
+        return capabilities;
     }
 
     @Override
@@ -82,8 +79,7 @@ public class SafariBrowser extends WebBrowser {
     }
 
     @Override
-    protected WebDriver createWebDriver() throws BiziboxWebDriverException {
-
+    protected WebDriver createWebDriver() {
         return new SafariDriver(getDesiredCapabilities());
     }
 

@@ -1,6 +1,7 @@
 package selenium.pagefactory.framework.browser.web;
 
 import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.logging.LoggingPreferences;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.actions.FirefoxSeleniumActions;
 import selenium.pagefactory.framework.config.TimeoutsConfig;
@@ -9,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -42,18 +42,18 @@ public class FirefoxBrowser extends WebBrowser {
     }
 
     @Override
-    public DesiredCapabilities getDesiredCapabilities() {
-        DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
+    public FirefoxOptions getDesiredCapabilities() {
+        FirefoxOptions capabilities = new FirefoxOptions();
 
-        setCommonWebBrowserCapabilities(desiredCapabilities);
+        setCommonWebBrowserCapabilities(capabilities);
 
-        desiredCapabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
-        desiredCapabilities.setCapability("marionette", true);
+        capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
+        capabilities.setCapability("marionette", true);
 
         FirefoxProfile profile = new FirefoxProfile();
 
 //        profile.setEnableNativeEvents(true);
-        desiredCapabilities.setCapability(FirefoxDriver.PROFILE, profile);
+        capabilities.setCapability(FirefoxDriver.PROFILE, profile);
 
         // If the browserBinaryPath is present, and it points to a real file, then set this as the Firefox Binary
         Optional<String> browserBinaryPath = getBrowserBinaryPath();
@@ -61,11 +61,15 @@ public class FirefoxBrowser extends WebBrowser {
             final String browserBinaryPathStr = browserBinaryPath.get();
             File file = new File(browserBinaryPathStr);
             if (file.exists()) {
-                desiredCapabilities.setCapability(FirefoxDriver.BINARY, new FirefoxBinary(file));
+                capabilities.setCapability(FirefoxDriver.BINARY, new FirefoxBinary(file));
             }
         }
 
-        return desiredCapabilities;
+        // Set logging preferences.
+        LoggingPreferences loggingPreferences = getLoggingPreferences();
+        capabilities.setCapability(CapabilityType.LOGGING_PREFS, loggingPreferences);
+
+        return capabilities;
     }
 
     @Override

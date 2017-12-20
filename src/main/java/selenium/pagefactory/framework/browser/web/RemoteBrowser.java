@@ -1,5 +1,6 @@
 package selenium.pagefactory.framework.browser.web;
 
+import org.openqa.selenium.Capabilities;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.actions.SeleniumActions;
 import selenium.pagefactory.framework.exception.BiziboxWebDriverException;
@@ -10,7 +11,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.remote.Augmenter;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -54,7 +54,7 @@ public class RemoteBrowser extends WebBrowser {
     }
 
     @Override
-    public DesiredCapabilities getDesiredCapabilities() {
+    public Capabilities getDesiredCapabilities() {
         return delegate.getDesiredCapabilities();
     }
 

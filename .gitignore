@@ -1,18 +1,11 @@
 # User-specific stuff:
-#.idea/**/workspace.xml
-#.idea/**/tasks.xml
-#.idea/dictionaries
-#.idea/libraries
-#.idea/inspectionProfiles/
-#.idea/*.xml
-
+# IntelliJ ignored files
 .idea/*
-!.idea/runConfigurations/
-.DS_Store
-
 target
 *.iml
 
+# In case your project is edited in IntelliJ, runConfigurations are shared
+!.idea/runConfigurations/
 
-
-
+# Mac ignored files
+.DS_Store

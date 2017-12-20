@@ -1,13 +1,9 @@
 package selenium.pagefactory.framework.browser.web;
 
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.logging.LogEntries;
 import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.browser.Browser;
 import selenium.pagefactory.framework.config.TimeoutsConfig;
@@ -40,7 +36,7 @@ public abstract class WebBrowser extends Browser<WebDriver> {
     private final Optional<Level> browserLogLevel;
     private final Optional<String> browserLogFile;
     private final Optional<Platform> platform;
-    private Optional<Map<String, String>> extraCapabilites;
+    private Optional<Map<String, String>> extraCapabilities;
 
     public WebBrowser(String baseTestUrl,
                       TimeoutsConfig timeouts,
@@ -81,7 +77,7 @@ public abstract class WebBrowser extends Browser<WebDriver> {
         this.browserLogLevel = browserLogLevel;
         this.browserLogFile = browserLogFile;
         this.platform = platform;
-        this.extraCapabilites = extras;
+        this.extraCapabilities = extras;
     }
 
     /**
@@ -105,10 +101,10 @@ public abstract class WebBrowser extends Browser<WebDriver> {
 
     public abstract WebBrowserType getBrowserType();
 
-    public abstract DesiredCapabilities getDesiredCapabilities();
+    public abstract Capabilities getDesiredCapabilities();
 
     public Optional<Map<String, String>> getExtraDesiredCapabilities(){
-        return this.extraCapabilites;
+        return this.extraCapabilities;
     }
 
     public LoggingPreferences getLoggingPreferences() {
@@ -254,28 +250,18 @@ public abstract class WebBrowser extends Browser<WebDriver> {
      * Helper to set properties of the DesiredCapabilities that are common across all browsers.
      * @param desiredCapabilities
      */
-    protected void setCommonWebBrowserCapabilities(DesiredCapabilities desiredCapabilities) {
-        // If a required version is present, then set this as a desired capability. Only affects Remote browsers.
-        Optional<String> browserVersion = getBrowserVersion();
-        if (browserVersion.isPresent() && !browserVersion.get().isEmpty()) {
-            desiredCapabilities.setCapability(CapabilityType.VERSION, browserVersion.get());
-        }
-
-        // Set logging preferences.
-        LoggingPreferences loggingPreferences = getLoggingPreferences();
-        desiredCapabilities.setCapability(CapabilityType.LOGGING_PREFS, loggingPreferences);
-
+    protected void setCommonWebBrowserCapabilities(MutableCapabilities desiredCapabilities) {
         // If a platform is specified, set this desired capability. Only affects Remote browsers.
         Optional<Platform> platform = getPlatform();
         if (platform.isPresent()) {
-            desiredCapabilities.setPlatform(platform.get());
+            desiredCapabilities.setCapability("platform", platform.get());
         }
         setExtrasCapabilities(desiredCapabilities, getExtraDesiredCapabilities());
     }
 
-    protected void setExtrasCapabilities(DesiredCapabilities currentCapabilities, Optional<Map<String, String>> extrasCapabilities){
-        if(extrasCapabilities.isPresent()){
-            for(Map.Entry<String, String> entry: extrasCapabilities.get().entrySet()){
+    protected void setExtrasCapabilities(MutableCapabilities currentCapabilities, Optional<Map<String, String>> extrasCapabilities){
+        if (extrasCapabilities.isPresent()){
+            for (Map.Entry<String, String> entry: extrasCapabilities.get().entrySet()){
                 currentCapabilities.setCapability(entry.getKey(), entry.getValue());
                 LOGGER.info("Adding Extra Capability: " + entry);
             }

@@ -14,12 +14,11 @@
         <testng.version>6.13.1</testng.version>
         <ui.tests.testng.file>ui-testng.xml</ui.tests.testng.file>
         <testng.tests.testnames>configure</testng.tests.testnames>
-        <tests.bizibox.server>https://bizibox.biz/</tests.bizibox.server>
+        <tests.bizibox.server>https://bizibox.biz</tests.bizibox.server>
         <webdriver.chrome.driver>${project.basedir}/etc/drivers/chrome/mac64/chromedriver</webdriver.chrome.driver>
-        <webdriver.gecko.driver>${project.basedir}/etc/drivers/firefox/mac64/geckodriver</webdriver.gecko.driver>
-        <!--<webdriver.ie.driver></webdriver.ie.driver>-->
-        <!--<webdriver.edge.driver></webdriver.edge.driver>-->
-        <!--<webdriver.safari.driver></webdriver.safari.driver>-->
+        <webdriver.firefox.driver>${project.basedir}/etc/drivers/firefox/mac64/geckodriver</webdriver.firefox.driver>
+        <webdriver.ie.driver>${project.basedir}/etc/drivers/ie/win64/IEDriverServer</webdriver.ie.driver>
+        <webdriver.edge.driver>${project.basedir}/etc/drivers/edge/MicrosoftWebDriver</webdriver.edge.driver>
     </properties>
 
 
@@ -46,34 +45,6 @@
             <artifactId>selenium-api</artifactId>
             <version>${selenium.version}</version>
         </dependency>
-
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.seleniumhq.selenium</groupId>-->
-            <!--<artifactId>selenium-chrome-driver</artifactId>-->
-            <!--<version>${selenium.version}</version>-->
-        <!--</dependency>-->
-
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-firefox-driver &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.seleniumhq.selenium</groupId>-->
-            <!--<artifactId>selenium-firefox-driver</artifactId>-->
-            <!--<version>${selenium.version}</version>-->
-        <!--</dependency>-->
-
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-ie-driver &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.seleniumhq.selenium</groupId>-->
-            <!--<artifactId>selenium-ie-driver</artifactId>-->
-            <!--<version>${selenium.version}</version>-->
-        <!--</dependency>-->
-
-        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-safari-driver &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>org.seleniumhq.selenium</groupId>-->
-            <!--<artifactId>selenium-safari-driver</artifactId>-->
-            <!--<version>${selenium.version}</version>-->
-        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
         <dependency>
@@ -124,6 +95,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -153,10 +125,9 @@
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-                        <!--<webdriver.ie.driver>${webdriver.ie.driver}</webdriver.ie.driver>-->
-                        <!--<webdriver.firefox.driver>${webdriver.firefox.driver}</webdriver.firefox.driver>-->
-                        <!--<webdriver.edge.driver>${webdriver.edge.driver}</webdriver.edge.driver>-->
-                        <!--<webdriver.safari.driver>${webdriver.safari.driver}</webdriver.safari.driver>-->
+                        <webdriver.ie.driver>${webdriver.ie.driver}</webdriver.ie.driver>
+                        <webdriver.firefox.driver>${webdriver.firefox.driver}</webdriver.firefox.driver>
+                        <webdriver.edge.driver>${webdriver.edge.driver}</webdriver.edge.driver>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

@@ -1,6 +1,7 @@
 package selenium.pagefactory.framework.browser;
 
 import com.google.common.base.Preconditions;
+import org.openqa.selenium.Capabilities;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.actions.SeleniumActions;
 import selenium.pagefactory.framework.browser.web.WebBrowserType;
@@ -13,7 +14,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +38,7 @@ public abstract class Browser<D extends WebDriver> {
 
     public abstract SeleniumActions getActions();
 
-    public abstract DesiredCapabilities getDesiredCapabilities();
+    public abstract Capabilities getDesiredCapabilities();
 
     public abstract void initializeBrowser() throws BiziboxWebDriverException;
 

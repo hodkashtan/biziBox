@@ -3,12 +3,13 @@ package selenium.pagefactory.framework.browser.web;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import selenium.pagefactory.framework.actions.EdgeActions;
 import selenium.pagefactory.framework.config.TimeoutsConfig;
-import selenium.pagefactory.framework.exception.BiziboxWebDriverException;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -37,17 +38,21 @@ public class EdgeBrowser extends WebBrowser {
     }
 
     @Override
-    public DesiredCapabilities getDesiredCapabilities() {
-        DesiredCapabilities desiredCapabilities = DesiredCapabilities.edge();
+    public EdgeOptions getDesiredCapabilities() {
+        EdgeOptions capabilities = new EdgeOptions();
 
-        setCommonWebBrowserCapabilities(desiredCapabilities);
+        setCommonWebBrowserCapabilities(capabilities);
 
         Optional<String> browserLogFile = getBrowserLogFile();
         if (browserLogFile.isPresent() && !browserLogFile.get().isEmpty()) {
-            desiredCapabilities.setCapability(InternetExplorerDriver.LOG_FILE, browserLogFile.get());
+            capabilities.setCapability(InternetExplorerDriver.LOG_FILE, browserLogFile.get());
         }
 
-        return desiredCapabilities;
+        // Set logging preferences.
+        LoggingPreferences loggingPreferences = getLoggingPreferences();
+        capabilities.setCapability(CapabilityType.LOGGING_PREFS, loggingPreferences);
+
+        return capabilities;
     }
 
     @Override
@@ -56,7 +61,7 @@ public class EdgeBrowser extends WebBrowser {
     }
 
     @Override
-    protected WebDriver createWebDriver() throws BiziboxWebDriverException {
+    protected WebDriver createWebDriver() {
         return new EdgeDriver(getDesiredCapabilities());
     }
 

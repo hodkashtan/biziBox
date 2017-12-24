@@ -38,7 +38,7 @@ public class EdgeBrowser extends WebBrowser {
     }
 
     @Override
-    public EdgeOptions getDesiredCapabilities() {
+    public EdgeOptions getCapabilities() {
         EdgeOptions capabilities = new EdgeOptions();
 
         setCommonWebBrowserCapabilities(capabilities);
@@ -62,7 +62,7 @@ public class EdgeBrowser extends WebBrowser {
 
     @Override
     protected WebDriver createWebDriver() {
-        return new EdgeDriver(getDesiredCapabilities());
+        return new EdgeDriver(getCapabilities());
     }
 
     @Nullable

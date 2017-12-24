@@ -23,8 +23,9 @@ public class BrowserSetupUtil {
         WebBrowserType webBrowserType = WebBrowserType.forName(CommonSystemProperties.BROWSER_NAME);
 
         String seleniumHubURL = CommonSystemProperties.SELENIUM_HUB_URL;
-        if(StringUtils.isNotEmpty(seleniumHubURL))
+        if (StringUtils.isNotEmpty(seleniumHubURL)) {
             return createRemoteBrowser(webBrowserType, baseTestURL, seleniumHubURL, getBrowserStackCapabilities());
+        }
 
         return createLocalBrowser(webBrowserType, baseTestURL);
     }
@@ -53,7 +54,7 @@ public class BrowserSetupUtil {
         return LocalBrowserBuilder.getBuilder(webBrowserType, baseTestURL)
                 .withTimeoutsConfig(timeoutsConfig)
                 .withBrowserBinaryPath(CommonSystemProperties.BROWSER_PATH)
-                .withWebDriverPath(CommonSystemProperties.WEBDRIVER_PATH)
+                .withWebDriverPath(CommonSystemProperties.WEB_DRIVER_PATH)
                 .withStartWindowHeight(CommonSystemProperties.START_WINDOW_HEIGHT)
                 .withStartWindowWidth(CommonSystemProperties.START_WINDOW_WIDTH)
                 .withBrowserLogLevel(java.util.logging.Level.parse(CommonSystemProperties.BROWSER_LOG_LEVEL))

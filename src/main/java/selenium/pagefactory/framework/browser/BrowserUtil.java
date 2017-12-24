@@ -1,12 +1,10 @@
 package selenium.pagefactory.framework.browser;
 
 import com.google.common.base.Throwables;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClientBuilder;
-import org.testng.log4testng.Logger;
-import selenium.pagefactory.framework.browser.web.RemoteBrowser;
 import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicHttpEntityEnclosingRequest;
 import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -18,6 +16,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.SessionId;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.log4testng.Logger;
+import selenium.pagefactory.framework.browser.web.RemoteBrowser;
 
 import java.io.InputStream;
 import java.net.URI;

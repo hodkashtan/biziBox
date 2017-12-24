@@ -1,8 +1,8 @@
 package selenium.pagefactory.framework.pages;
 
+import org.openqa.selenium.By;
 import selenium.pagefactory.framework.actions.SeleniumActions;
 import selenium.pagefactory.framework.config.TimeoutType;
-import org.openqa.selenium.By;
 
 import javax.annotation.Nullable;
 

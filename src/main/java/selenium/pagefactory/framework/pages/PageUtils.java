@@ -2,12 +2,12 @@ package selenium.pagefactory.framework.pages;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
-import org.testng.log4testng.Logger;
-import selenium.pagefactory.framework.actions.SeleniumActions;
-import selenium.pagefactory.framework.config.TimeoutType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.log4testng.Logger;
+import selenium.pagefactory.framework.actions.SeleniumActions;
+import selenium.pagefactory.framework.config.TimeoutType;
 
 import java.lang.reflect.Field;
 import java.net.URI;
@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by charles.capps on 7/29/14.
- *
  * Helpers for interacting with Pages and TopLevelPages
  */
 public class PageUtils {

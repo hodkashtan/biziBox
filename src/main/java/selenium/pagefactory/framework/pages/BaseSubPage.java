@@ -1,10 +1,10 @@
 package selenium.pagefactory.framework.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.actions.SeleniumActions;
 import selenium.pagefactory.framework.config.TimeoutType;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
 
 import javax.annotation.Nullable;
 

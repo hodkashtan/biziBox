@@ -1,15 +1,15 @@
 package selenium.pagefactory.framework.browser.web;
 
-import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.openqa.selenium.logging.LoggingPreferences;
-import selenium.pagefactory.framework.actions.InternetExplorerActions;
-import selenium.pagefactory.framework.config.TimeoutsConfig;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerDriverLogLevel;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
+import selenium.pagefactory.framework.actions.InternetExplorerActions;
+import selenium.pagefactory.framework.config.TimeoutsConfig;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -38,7 +38,7 @@ public class InternetExplorerBrowser extends WebBrowser {
     }
 
     @Override
-    public InternetExplorerOptions getDesiredCapabilities() {
+    public InternetExplorerOptions getCapabilities() {
         InternetExplorerOptions capabilities = new InternetExplorerOptions();
 
         setCommonWebBrowserCapabilities(capabilities);
@@ -99,7 +99,7 @@ public class InternetExplorerBrowser extends WebBrowser {
 
     @Override
     protected WebDriver createWebDriver() {
-        return new InternetExplorerDriver(getDesiredCapabilities());
+        return new InternetExplorerDriver(getCapabilities());
     }
 
     @Nullable

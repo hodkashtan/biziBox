@@ -1,8 +1,8 @@
 package selenium.pagefactory.framework.actions;
 
-import selenium.pagefactory.framework.browser.mobile.IOSMobileBrowser;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
+import selenium.pagefactory.framework.browser.mobile.IOSMobileBrowser;
 
 import java.util.HashMap;
 

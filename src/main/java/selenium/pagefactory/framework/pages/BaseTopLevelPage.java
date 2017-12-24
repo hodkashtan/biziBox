@@ -1,12 +1,12 @@
 package selenium.pagefactory.framework.pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.actions.SeleniumActions;
 import selenium.pagefactory.framework.browser.web.WebBrowser;
 import selenium.pagefactory.framework.config.TimeoutType;
 import selenium.pagefactory.framework.exception.InvalidPageUrlException;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.PageFactory;
 
 import javax.annotation.Nonnull;
 import java.net.URI;
@@ -91,7 +91,11 @@ public class BaseTopLevelPage<S extends SeleniumActions> implements TopLevelPage
         }
 
         URI currentURI = URI.create(currentURL);
-        String currentPath = currentURI.getPath();
+        String fragment = "";
+        if (!currentURI.getFragment().isEmpty()) {
+            fragment = "#" + currentURI.getFragment();
+        }
+        String currentPath = currentURI.getPath() + fragment;
 
         // Remove trailing slashes
         if (currentPath.endsWith("/")) {

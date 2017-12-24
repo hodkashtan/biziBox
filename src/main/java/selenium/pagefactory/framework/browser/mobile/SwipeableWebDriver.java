@@ -1,6 +1,5 @@
 package selenium.pagefactory.framework.browser.mobile;
 
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.interactions.HasTouchScreen;

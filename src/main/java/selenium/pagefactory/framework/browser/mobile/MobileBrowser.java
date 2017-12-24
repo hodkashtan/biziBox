@@ -1,7 +1,10 @@
 package selenium.pagefactory.framework.browser.mobile;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.TouchAction;
-import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.ScreenOrientation;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.browser.Browser;
 import selenium.pagefactory.framework.browser.web.WebBrowserType;
@@ -9,10 +12,6 @@ import selenium.pagefactory.framework.config.TimeoutsConfig;
 import selenium.pagefactory.framework.exception.BiziboxWebDriverException;
 import selenium.pagefactory.framework.pages.BaseTopLevelPage;
 import selenium.pagefactory.framework.pages.TopLevelPage;
-import io.appium.java_client.AppiumDriver;
-import org.openqa.selenium.ScreenOrientation;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.time.Duration;
 import java.util.Map;

@@ -2,14 +2,14 @@ package selenium.pagefactory.framework.actions;
 
 import com.google.common.base.*;
 import com.google.common.collect.Lists;
-import org.testng.log4testng.Logger;
-import selenium.pagefactory.framework.browser.Browser;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.log4testng.Logger;
+import selenium.pagefactory.framework.browser.Browser;
 import selenium.pagefactory.framework.browser.BrowserUtil;
 import selenium.pagefactory.framework.config.TimeoutType;
 import selenium.pagefactory.framework.config.TimeoutsConfig;

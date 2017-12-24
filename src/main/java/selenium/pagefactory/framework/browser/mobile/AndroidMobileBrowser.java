@@ -46,7 +46,7 @@ public class AndroidMobileBrowser extends MobileBrowser {
     }
 
     @Override
-    public DesiredCapabilities getDesiredCapabilities() {
+    public DesiredCapabilities getCapabilities() {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(CapabilityType.BROWSER_NAME, browserName);
         desiredCapabilities.setCapability("platform", platform);
@@ -67,8 +67,8 @@ public class AndroidMobileBrowser extends MobileBrowser {
 
     protected AndroidDriver createWebDriver() throws BiziboxWebDriverException {
         try {
-            printCapabilities(getDesiredCapabilities());
-            return new SwipeableWebDriver(new URL(getBaseTestUrl()), getDesiredCapabilities());
+            printCapabilities(getCapabilities());
+            return new SwipeableWebDriver(new URL(getBaseTestUrl()), getCapabilities());
         } catch (IOException e) {
             throw new BiziboxWebDriverException("Error starting appium driver service", e);
         }

@@ -1,6 +1,7 @@
 package keywords;
 
 import common.CommonSystemProperties;
+import env.Suite;
 import selenium.pagefactory.framework.actions.SeleniumActions;
 import selenium.pagefactory.framework.browser.web.WebBrowser;
 import selenium.pagefactory.framework.pages.SubPage;
@@ -26,7 +27,10 @@ public abstract class BaseUiKeywords {
         if (browserForKeywords != null) {
             return browserForKeywords;
         }
-        return null;
+
+        return Suite.getInstance()
+                .getCurrentTestState()
+                .getBrowser();
     }
 
     // Browser to use for Keywords class, mainly for multi-threaded, multi-browser tests

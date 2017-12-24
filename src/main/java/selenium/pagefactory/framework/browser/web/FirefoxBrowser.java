@@ -1,15 +1,18 @@
 package selenium.pagefactory.framework.browser.web;
 
-import org.openqa.selenium.firefox.*;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.logging.LogEntries;
+import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
+import org.openqa.selenium.remote.CapabilityType;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.actions.FirefoxSeleniumActions;
 import selenium.pagefactory.framework.config.TimeoutsConfig;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.logging.LogEntries;
-import org.openqa.selenium.logging.LogType;
-import org.openqa.selenium.remote.CapabilityType;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -42,7 +45,7 @@ public class FirefoxBrowser extends WebBrowser {
     }
 
     @Override
-    public FirefoxOptions getDesiredCapabilities() {
+    public FirefoxOptions getCapabilities() {
         FirefoxOptions capabilities = new FirefoxOptions();
 
         setCommonWebBrowserCapabilities(capabilities);

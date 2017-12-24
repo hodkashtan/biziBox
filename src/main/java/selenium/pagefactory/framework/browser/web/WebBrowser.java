@@ -22,7 +22,7 @@ import java.util.logging.Level;
 /**
  * Base Browser class.
  * Contains a lot of the configuration that is common across browsers.
- * Subclasses must implement getBrowserType, getDesiredCapabilities, isRemote, and getActions
+ * Subclasses must implement getBrowserType, getCapabilities, isRemote, and getActions
  */
 public abstract class WebBrowser extends Browser<WebDriver> {
     private static final Logger LOGGER = Logger.getLogger(WebBrowser.class);
@@ -101,7 +101,7 @@ public abstract class WebBrowser extends Browser<WebDriver> {
 
     public abstract WebBrowserType getBrowserType();
 
-    public abstract Capabilities getDesiredCapabilities();
+    public abstract Capabilities getCapabilities();
 
     public Optional<Map<String, String>> getExtraDesiredCapabilities(){
         return this.extraCapabilities;
@@ -248,15 +248,15 @@ public abstract class WebBrowser extends Browser<WebDriver> {
 
     /**
      * Helper to set properties of the DesiredCapabilities that are common across all browsers.
-     * @param desiredCapabilities
+     * @param mutableCapabilities
      */
-    protected void setCommonWebBrowserCapabilities(MutableCapabilities desiredCapabilities) {
+    protected void setCommonWebBrowserCapabilities(MutableCapabilities mutableCapabilities) {
         // If a platform is specified, set this desired capability. Only affects Remote browsers.
         Optional<Platform> platform = getPlatform();
         if (platform.isPresent()) {
-            desiredCapabilities.setCapability("platform", platform.get());
+            mutableCapabilities.setCapability("platform", platform.get());
         }
-        setExtrasCapabilities(desiredCapabilities, getExtraDesiredCapabilities());
+        setExtrasCapabilities(mutableCapabilities, getExtraDesiredCapabilities());
     }
 
     protected void setExtrasCapabilities(MutableCapabilities currentCapabilities, Optional<Map<String, String>> extrasCapabilities){

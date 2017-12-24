@@ -2,14 +2,21 @@ package pages.bizibox.top;
 
 import org.openqa.selenium.By;
 import org.testng.log4testng.Logger;
-import selenium.pagefactory.framework.config.TimeoutType;
 import selenium.pagefactory.framework.pages.BaseTopLevelPage;
+import selenium.pagefactory.framework.pages.WebPagePath;
+import uris.bizibox.BiziboxPaths;
 
+@WebPagePath(isRegex = true, path = BiziboxPaths.HOME_PAGE_PATH)
 public class BiziboxPage extends BaseTopLevelPage {
     private static final Logger LOGGER = Logger.getLogger(BiziboxPage.class);
+
+    public static final String LOGIN_XPATH = "/html/head/title";
+
     private boolean pageLoaded = false;
 
-    public static final By TIPS_CLOSE_LINK = By.xpath("*[@id=\"rtl\"]/body/div[1]/div[2]/div[2]/div[2]/img[2]");
+    public By getPageIdentifier() {
+        return By.xpath(LOGIN_XPATH);
+    }
 
     @Override
     public void pageLoadHook() {
@@ -17,9 +24,6 @@ public class BiziboxPage extends BaseTopLevelPage {
         if (!pageLoaded) {
             pageLoaded = true;
             getActions().waitForWebPageReadyStateToBeComplete(); // Wait for document.readyState to be "complete"
-        }
-        if (a.isVisible(TIPS_CLOSE_LINK)) {
-            a.clickAndVerifyNotVisible(TIPS_CLOSE_LINK, TIPS_CLOSE_LINK, TimeoutType.DEFAULT);
         }
     }
 }

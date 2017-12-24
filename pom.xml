@@ -14,9 +14,10 @@
         <testng.version>6.13.1</testng.version>
         <ui.tests.testng.file>ui-testng.xml</ui.tests.testng.file>
         <testng.tests.testnames>configure</testng.tests.testnames>
-        <tests.bizibox.server>https://bizibox.biz</tests.bizibox.server>
+        <tests.bizibox.server>https://secure-stg.bizibox.biz</tests.bizibox.server>
         <webdriver.chrome.driver>${project.basedir}/etc/drivers/chrome/mac64/chromedriver</webdriver.chrome.driver>
         <webdriver.firefox.driver>${project.basedir}/etc/drivers/firefox/mac64/geckodriver</webdriver.firefox.driver>
+        <webdriver.firefox.marionette>true</webdriver.firefox.marionette>
         <webdriver.ie.driver>${project.basedir}/etc/drivers/ie/win64/IEDriverServer</webdriver.ie.driver>
         <webdriver.edge.driver>${project.basedir}/etc/drivers/edge/MicrosoftWebDriver</webdriver.edge.driver>
     </properties>
@@ -60,6 +61,13 @@
             <version>${selenium.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.codeborne/selenide -->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>4.9</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
@@ -72,6 +80,20 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.1</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.glassfish.jersey.core/jersey-common -->
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-common</artifactId>
+            <version>2.26</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->

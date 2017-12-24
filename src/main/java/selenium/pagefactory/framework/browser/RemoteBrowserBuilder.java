@@ -2,11 +2,11 @@ package selenium.pagefactory.framework.browser;
 
 import com.google.common.base.MoreObjects;
 import com.google.common.base.Preconditions;
+import org.openqa.selenium.Platform;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.browser.web.*;
 import selenium.pagefactory.framework.config.TimeoutsConfig;
 import selenium.pagefactory.framework.exception.BiziboxWebDriverException;
-import org.openqa.selenium.Platform;
 
 import java.util.List;
 import java.util.Map;

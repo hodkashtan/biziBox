@@ -25,6 +25,8 @@ import java.util.Set;
 import java.util.logging.Level;
 
 public class ChromeBrowser extends WebBrowser {
+    private static final Logger LOGGER = Logger.getLogger(ChromeBrowser.class);
+
     private Optional<List<String>> options;
 
     public ChromeBrowser(String baseTestUrl,
@@ -47,9 +49,6 @@ public class ChromeBrowser extends WebBrowser {
             this.options = options;
     }
 
-    private static final Logger LOGGER = Logger.getLogger(ChromeBrowser.class);
-
-
     @Override
     public WebBrowserType getBrowserType() {
         return WebBrowserType.CHROME;
@@ -65,42 +64,42 @@ public class ChromeBrowser extends WebBrowser {
     }
 
     @Override
-    public ChromeOptions getDesiredCapabilities() {
-        ChromeOptions capabilities = new ChromeOptions();
-        setCommonWebBrowserCapabilities(capabilities);
+    public ChromeOptions getCapabilities() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        setCommonWebBrowserCapabilities(chromeOptions);
 
-        capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
+        chromeOptions.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
 
-        // If the locale option is present and is not empty, then set this option in Chromedriver
+        // If the locale option is present and is not empty, then set this option in ChromeDriver
         Optional<String> browserLocale = getBrowserLocale();
         if (browserLocale.isPresent() && !browserLocale.get().isEmpty()) {
             Map<String, String> chromePrefs = Maps.newHashMap();
             chromePrefs.put("intl.accept_languages", browserLocale.get());
-            capabilities.setCapability("chrome.prefs", chromePrefs);
+            chromeOptions.setCapability("chrome.prefs", chromePrefs);
         }
 
         // If the browser binary path is present and not empty, then set this as the Chrome Binary file
         Optional<String> browserBinaryPath = getBrowserBinaryPath();
         if (browserBinaryPath.isPresent() && !browserBinaryPath.get().isEmpty()) {
-            capabilities.setCapability("chrome.binary", browserBinaryPath.get());
+            chromeOptions.setCapability("chrome.binary", browserBinaryPath.get());
         }
 
-        // This tells Chromedriver we're running tests.
+        // This tells ChromeDriver we're running tests.
         // This eliminates the banner with the message "You are using an unsupported command-line flag --ignore-certificate-errors"
         if (options.isPresent()) {
             if (!options.get().contains("test-type")) {
                 options.get().add("test-type");
             }
 
-            capabilities.addArguments(options.get());
-            capabilities.setCapability(ChromeOptions.CAPABILITY, capabilities);
+            chromeOptions.addArguments(options.get());
+            chromeOptions.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         }
 
         // Set logging preferences.
         LoggingPreferences loggingPreferences = getLoggingPreferences();
-        capabilities.setCapability(CapabilityType.LOGGING_PREFS, loggingPreferences);
+        chromeOptions.setCapability(CapabilityType.LOGGING_PREFS, loggingPreferences);
 
-        return capabilities;
+        return chromeOptions;
     }
 
     @Override
@@ -132,7 +131,7 @@ public class ChromeBrowser extends WebBrowser {
         } catch (IOException e) {
             throw new BiziboxWebDriverException("Error starting Chrome driver service", e);
         }
-        return new ChromeDriver(service, getDesiredCapabilities());
+        return new ChromeDriver(service, getCapabilities());
     }
 
     @Nullable

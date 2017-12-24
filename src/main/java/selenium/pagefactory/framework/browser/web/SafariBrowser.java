@@ -1,8 +1,5 @@
 package selenium.pagefactory.framework.browser.web;
 
-import org.testng.log4testng.Logger;
-import selenium.pagefactory.framework.actions.SafariSeleniumActions;
-import selenium.pagefactory.framework.config.TimeoutsConfig;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.logging.LogEntries;
@@ -11,6 +8,9 @@ import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
+import org.testng.log4testng.Logger;
+import selenium.pagefactory.framework.actions.SafariSeleniumActions;
+import selenium.pagefactory.framework.config.TimeoutsConfig;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -55,7 +55,7 @@ public class SafariBrowser extends WebBrowser {
     }
 
     @Override
-    public SafariOptions getDesiredCapabilities() {
+    public SafariOptions getCapabilities() {
         SafariOptions capabilities = new SafariOptions();
 
         setCommonWebBrowserCapabilities(capabilities);
@@ -80,7 +80,7 @@ public class SafariBrowser extends WebBrowser {
 
     @Override
     protected WebDriver createWebDriver() {
-        return new SafariDriver(getDesiredCapabilities());
+        return new SafariDriver(getCapabilities());
     }
 
     @Nullable

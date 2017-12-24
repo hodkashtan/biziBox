@@ -1,10 +1,7 @@
 package selenium.pagefactory.framework.browser.web;
 
-import org.openqa.selenium.Capabilities;
-import org.testng.log4testng.Logger;
-import selenium.pagefactory.framework.actions.SeleniumActions;
-import selenium.pagefactory.framework.exception.BiziboxWebDriverException;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +10,9 @@ import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.log4testng.Logger;
+import selenium.pagefactory.framework.actions.SeleniumActions;
+import selenium.pagefactory.framework.exception.BiziboxWebDriverException;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -54,14 +54,14 @@ public class RemoteBrowser extends WebBrowser {
     }
 
     @Override
-    public Capabilities getDesiredCapabilities() {
-        return delegate.getDesiredCapabilities();
+    public Capabilities getCapabilities() {
+        return delegate.getCapabilities();
     }
 
     @Override
     protected WebDriver createWebDriver() throws BiziboxWebDriverException {
         try {
-            RemoteWebDriver driver = new RemoteWebDriver(new URL(seleniumHubURL), delegate.getDesiredCapabilities());
+            RemoteWebDriver driver = new RemoteWebDriver(new URL(seleniumHubURL), delegate.getCapabilities());
             Level level = getLogLevel();
             driver.setLogLevel(level);
             driver.setFileDetector(new LocalFileDetector()); // Allow to upload local files to remote webdriver

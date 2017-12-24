@@ -1,11 +1,11 @@
 package selenium.pagefactory.framework.browser.mobile;
 
-import selenium.pagefactory.framework.actions.IOSSeleniumActions;
-import selenium.pagefactory.framework.config.TimeoutsConfig;
-import selenium.pagefactory.framework.exception.BiziboxWebDriverException;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import selenium.pagefactory.framework.actions.IOSSeleniumActions;
+import selenium.pagefactory.framework.config.TimeoutsConfig;
+import selenium.pagefactory.framework.exception.BiziboxWebDriverException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +40,7 @@ public class IOSMobileBrowser extends MobileBrowser {
     }
 
     @Override
-    public DesiredCapabilities getDesiredCapabilities() {
+    public DesiredCapabilities getCapabilities() {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setCapability(CapabilityType.BROWSER_NAME, browserName);
         desiredCapabilities.setCapability("platform", platform);
@@ -59,8 +59,8 @@ public class IOSMobileBrowser extends MobileBrowser {
 
     protected IOSDriver createWebDriver() throws BiziboxWebDriverException {
         try {
-            printCapabilities(getDesiredCapabilities());
-            return new IOSDriver(new URL(getBaseTestUrl()), getDesiredCapabilities());
+            printCapabilities(getCapabilities());
+            return new IOSDriver(new URL(getBaseTestUrl()), getCapabilities());
         } catch (IOException e) {
             throw new BiziboxWebDriverException("Error starting appium driver service", e);
         }

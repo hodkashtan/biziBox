@@ -1,10 +1,10 @@
 package selenium.pagefactory.framework.actions;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
 import org.testng.log4testng.Logger;
 import selenium.pagefactory.framework.browser.web.InternetExplorerBrowser;
 import selenium.pagefactory.framework.config.TimeoutType;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriverException;
 
 /**
  * SeleniumActions class for InternetExplorer.

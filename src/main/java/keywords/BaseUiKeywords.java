@@ -41,6 +41,13 @@ public abstract class BaseUiKeywords {
             return browserForKeywords.getBaseTestUrl();
         }
 
+        if (Suite.getInstance().getCurrentTestState() != null) {
+            return Suite.getInstance()
+                    .getCurrentTestState()
+                    .getBrowser()
+                    .getBaseTestUrl();
+        }
+
         return CommonSystemProperties.BIZIBOX_SERVER_URL;
     }
 

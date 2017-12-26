@@ -25,7 +25,7 @@ public class BiziboxSetupKeywords extends BaseUiKeywords {
      */
     public void initSuite() {
 
-        LOGGER.info("Running 'Before Jive Robot Suite => initSuite()'");
+        LOGGER.info("Running 'Before Bizibox Suite => initSuite()'");
         LOGGER.info("MAVEN_OPTS: \"" + System.getenv("MAVEN_OPTS") + "\"");
         LOGGER.info("Max heap size: " + Runtime.getRuntime().maxMemory());
         LOGGER.info("Total memory: " + Runtime.getRuntime().totalMemory());
@@ -38,7 +38,7 @@ public class BiziboxSetupKeywords extends BaseUiKeywords {
             return;
         }
 
-        LOGGER.info("Success - finished 'Before Robot Suite'");
+        LOGGER.info("Success - finished 'Before Suite'");
     }
 
     private void configureSelenide() {
@@ -52,13 +52,13 @@ public class BiziboxSetupKeywords extends BaseUiKeywords {
     }
 
     public void initBrowserAndTestState() throws BiziboxWebDriverException {
-        Suite robotSuite = Suite.getInstance();
+        Suite suite = Suite.getInstance();
 
         WebBrowser browser = BrowserSetupUtil.createBrowser(CommonSystemProperties.BIZIBOX_SERVER_URL);
 
-        TestState robotTestState = new TestState(browser);
+        TestState testState = new TestState(browser);
 
-        robotSuite.setCurrentTestState(robotTestState);
+        suite.setCurrentTestState(testState);
 
         if(!CommonSystemProperties.IS_DOCKERIZED_ENV) {
             logSeleniumNode(browser);

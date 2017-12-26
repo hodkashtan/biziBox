@@ -1,30 +1,50 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="chrome configure tests" type="TestNG" factoryName="TestNG" singleton="true">
-    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-    <module name="biziBox" />
-    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-    <option name="ALTERNATIVE_JRE_PATH" />
-    <option name="SUITE_NAME" value="" />
-    <option name="PACKAGE_NAME" value="" />
-    <option name="MAIN_CLASS_NAME" value="" />
-    <option name="METHOD_NAME" value="" />
-    <option name="GROUP_NAME" value="configure" />
-    <option name="TEST_OBJECT" value="GROUP" />
-    <option name="VM_PARAMETERS" value="-ea -Dtests.bizibox.server=https://adm-stg.bizibox.biz -Dtestng.selenium.browser=chrome -Dwebdriver.chrome.driver=etc/drivers/chrome/mac64/chromedriver" />
-    <option name="PARAMETERS" value="" />
-    <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
-    <option name="OUTPUT_DIRECTORY" value="" />
-    <option name="ANNOTATION_TYPE" />
-    <option name="ENV_VARIABLES" />
-    <option name="PASS_PARENT_ENVS" value="true" />
-    <option name="TEST_SEARCH_SCOPE">
-      <value defaultName="singleModule" />
-    </option>
-    <option name="USE_DEFAULT_REPORTERS" value="false" />
-    <option name="PROPERTIES_FILE" value="" />
-    <envs />
-    <properties />
-    <listeners />
+  <configuration default="false" name="chrome configure tests" type="MavenRunConfiguration" factoryName="Maven">
+    <MavenSettings>
+      <option name="myGeneralSettings" />
+      <option name="myRunnerSettings">
+        <MavenRunnerSettings>
+          <option name="environmentProperties">
+            <map />
+          </option>
+          <option name="jreName" value="#USE_PROJECT_JDK" />
+          <option name="mavenProperties">
+            <map>
+              <entry key="suiteXmlFile" value="etc/testng/ui-testng.xml" />
+              <entry key="testng.tests.testnames" value="ui-tests" />
+              <entry key="tests.bizibox.server" value="http://172.25.101.21:8080" />
+              <entry key="webdriver.chrome.driver" value="$PROJECT_DIR$/etc/drivers/chrome/mac64/chromedriver" />
+            </map>
+          </option>
+          <option name="passParentEnv" value="true" />
+          <option name="runMavenInBackground" value="true" />
+          <option name="skipTests" value="false" />
+          <option name="vmOptions" value="" />
+        </MavenRunnerSettings>
+      </option>
+      <option name="myRunnerParameters">
+        <MavenRunnerParameters>
+          <option name="profiles">
+            <set />
+          </option>
+          <option name="goals">
+            <list>
+              <option value="-U" />
+              <option value="-e" />
+              <option value="clean" />
+              <option value="test" />
+              <option value="-DreuseForks=false" />
+              <option value="-DforkCount=0" />
+            </list>
+          </option>
+          <option name="profilesMap">
+            <map />
+          </option>
+          <option name="resolveToWorkspace" value="false" />
+          <option name="workingDirPath" value="$PROJECT_DIR$" />
+        </MavenRunnerParameters>
+      </option>
+    </MavenSettings>
     <method />
   </configuration>
 </component>

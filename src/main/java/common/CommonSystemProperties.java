@@ -5,7 +5,7 @@ import static uris.bizibox.URIUtil.removeTrailingSlash;
 public class CommonSystemProperties {
 
     // ------- Bizibox properties -----
-    public final static String BIZIBOX_SERVER_URL = System.getProperty("tests.bizibox.server", "https://secure.bizibox.biz");
+    public final static String BIZIBOX_SERVER_URL = System.getProperty("tests.bizibox.server", "http://172.25.101.21:8080");
     public final static String BIZIBOX_USERNAME = System.getProperty("tests.bizibox.user", "autotest");
     public final static String BIZIBOX_PASSWORD = System.getProperty("tests.bizibox.password", "1234");
 

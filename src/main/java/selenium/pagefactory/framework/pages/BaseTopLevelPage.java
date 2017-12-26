@@ -26,14 +26,14 @@ public class BaseTopLevelPage<S extends SeleniumActions> implements TopLevelPage
 
     private long pageLoadTime;
 
-    protected S a;
+    protected S seleniumActions;
 
     public final S getActions() {
-        return a;
+        return seleniumActions;
     }
 
     public final void setActions(SeleniumActions actions) {
-        this.a = (S) actions;
+        this.seleniumActions = (S) actions;
     }
 
     @Nonnull
@@ -53,7 +53,7 @@ public class BaseTopLevelPage<S extends SeleniumActions> implements TopLevelPage
         }
 
         // First do the default load hook, which verifies an element is present
-        PAGE_UTILS.defaultPageLoadHook(this, a, getPageReadyTimeout());
+        PAGE_UTILS.defaultPageLoadHook(this, seleniumActions, getPageReadyTimeout());
 
         // Next, verify that the current URL matches the value annotated with @WebPagePath
         verifyCurrentURL();
@@ -76,14 +76,14 @@ public class BaseTopLevelPage<S extends SeleniumActions> implements TopLevelPage
         WebPagePath webPagePath = getClass().getAnnotation(WebPagePath.class);
 
         // If the @WebPagePath annotation isn't present, or browser isn't a WebBrowser, then return.
-        if (webPagePath == null || !(a.getBrowser() instanceof WebBrowser)) {
+        if (webPagePath == null || !(seleniumActions.getBrowser() instanceof WebBrowser)) {
             return;
         }
 
         String expectedPath = webPagePath.path();
         boolean regex = webPagePath.isRegex();
 
-        String currentURL = a.getCurrentURL();
+        String currentURL = seleniumActions.getCurrentURL();
 
         // Not sure when a WebDriver returns null for current URL, but just don't validate in this case
         if (currentURL == null) {
@@ -91,11 +91,11 @@ public class BaseTopLevelPage<S extends SeleniumActions> implements TopLevelPage
         }
 
         URI currentURI = URI.create(currentURL);
-        String fragment = "";
-        if (!currentURI.getFragment().isEmpty()) {
-            fragment = "#" + currentURI.getFragment();
+        String currentPath = currentURI.getPath();
+
+        if (currentURI.getFragment() != null && !currentURI.getFragment().isEmpty()) {
+            currentPath += "#" + currentURI.getFragment();
         }
-        String currentPath = currentURI.getPath() + fragment;
 
         // Remove trailing slashes
         if (currentPath.endsWith("/")) {
@@ -133,7 +133,7 @@ public class BaseTopLevelPage<S extends SeleniumActions> implements TopLevelPage
     }
 
     public final void initSubPages() {
-        PAGE_UTILS.initSubPages(this, a);
+        PAGE_UTILS.initSubPages(this, seleniumActions);
     }
 
     @Override

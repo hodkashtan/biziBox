@@ -1,7 +1,6 @@
 package uris.bizibox;
 
 import common.CommonSystemProperties;
-import org.testng.log4testng.Logger;
 
 import javax.ws.rs.core.UriBuilder;
 import java.net.URI;
@@ -9,10 +8,17 @@ import java.net.URI;
 
 public enum BiziboxURIs {
 
-    HOME_PAGE(BiziboxPaths.HOME_PAGE_PATH);
+    HOME_PAGE(BiziboxPaths.HOME_PAGE_PATH),
+    SETTINGS_PAGE(BiziboxPaths.SETTINGS_PAGE_PATH),
+    ACCOUNTANT_PAGE(BiziboxPaths.ACCOUNTANT_PAGE_PATH),
+    MAIN_PAGE(BiziboxPaths.MAIN_PAGE_PATH),
+    COMPANYS_PAGE(BiziboxPaths.COMPANYS_PAGE_PATH),
+    EXPORT_HASHV_PAGE(BiziboxPaths.EXPORT_HASHV_PAGE_PATH),
+    CARDS_PAGE(BiziboxPaths.CARDS_PAGE_PATH),
+    REPORTS_MAIN_PAGE(BiziboxPaths.REPORTS_MAIN_PAGE_PATH),
+    MANAGEMENT_TEAM_PAGE(BiziboxPaths.MANAGEMENT_TEAM_PAGE_PATH);
 
     private final String path;
-    private static final Logger LOGGER = Logger.getLogger(BiziboxURIs.class);
 
     private BiziboxURIs(String path) {
         this.path = path;

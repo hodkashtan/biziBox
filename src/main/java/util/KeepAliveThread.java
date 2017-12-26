@@ -38,7 +38,7 @@ public class KeepAliveThread extends Thread{
             Thread.sleep(PAUSE_MILLIS);
         } catch (InterruptedException e) {
             logger.trace("KeepAliveThread thread interrupted at end of test case. Exiting thread.");
-            return false; // Don't continue if something interrupts the thread. Probably interrupted by RobotState at the end of a test case.
+            return false; // Don't continue if something interrupts the thread. Probably interrupted by State at the end of a test case.
         }
 
         synchronized (this) {

@@ -10,7 +10,7 @@
     <option name="METHOD_NAME" value="" />
     <option name="GROUP_NAME" value="configure" />
     <option name="TEST_OBJECT" value="GROUP" />
-    <option name="VM_PARAMETERS" value="-ea -Dtests.bizibox.server=https://adm-stg.bizibox.biz -Dtestng.selenium.browser=firefox -Dwebdriver.gecko.driver=etc/drivers/firefox/mac64/geckodriver -Dwebdriver.firefox.marionette=true" />
+    <option name="VM_PARAMETERS" value="-ea -Dtests.bizibox.server=http://172.25.101.21:8080 -Dtestng.selenium.browser=firefox -Dwebdriver.gecko.driver=etc/drivers/firefox/mac64/geckodriver -Dwebdriver.firefox.marionette=true" />
     <option name="PARAMETERS" value="" />
     <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
     <option name="OUTPUT_DIRECTORY" value="" />

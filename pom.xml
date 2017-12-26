@@ -13,8 +13,8 @@
         <selenium.version>3.8.1</selenium.version>
         <testng.version>6.13.1</testng.version>
         <ui.tests.testng.file>ui-testng.xml</ui.tests.testng.file>
-        <testng.tests.testnames>configure</testng.tests.testnames>
-        <tests.bizibox.server>https://secure-stg.bizibox.biz</tests.bizibox.server>
+        <testng.tests.testnames>ui-tests</testng.tests.testnames>
+        <tests.bizibox.server>http://172.25.101.21:8080/login</tests.bizibox.server>
         <webdriver.chrome.driver>${project.basedir}/etc/drivers/chrome/mac64/chromedriver</webdriver.chrome.driver>
         <webdriver.firefox.driver>${project.basedir}/etc/drivers/firefox/mac64/geckodriver</webdriver.firefox.driver>
         <webdriver.firefox.marionette>true</webdriver.firefox.marionette>
@@ -131,10 +131,15 @@
                 <version>2.20.1</version>
                 <configuration>
                     <skip>false</skip>
+                    <groups>configure</groups>
                     <properties>
                         <property>
                             <name>testnames</name>
                             <value>${testng.tests.testnames}</value>
+                        </property>
+                        <property>
+                            <name>surefire.testng.verbose</name>
+                            <value>10</value>
                         </property>
                         <!--<property>-->
                             <!--<name>listener</name>-->
@@ -143,7 +148,7 @@
                         <workingDirectory>target/</workingDirectory>
                     </properties>
                     <suiteXmlFiles>
-                        <suiteXmlFile>${project.basedir}/etc/testng/${ui.tests.testng.file}</suiteXmlFile>
+                        <suiteXmlFile>etc/testng/${ui.tests.testng.file}</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
